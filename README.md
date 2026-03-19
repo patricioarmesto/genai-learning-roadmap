@@ -6,6 +6,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 
 | Day | Project | Description |
 |-----|---------|-------------|
+| — | Capstone | ReAct research CLI with structured JSON report output |
 | 1 | CLI chatbot | Chat with memory that persists conversation history |
 | 2 | Invoice parser | Extract structured data from raw email text |
 | 3 | Tool-calling agent | Weather + calculator assistant that calls tools in real time |
@@ -290,6 +291,12 @@ python main.py demo   # Run demo questions in terminal
 
 ```
 .
+├── README.md  # this file
+├── week1_capstone/
+│   ├── main.py
+│   ├── report_*.json  # sample output reports
+│   ├── pyproject.toml
+│   └── README.md
 ├── day1/
 │   ├── main.py
 │   ├── chat_history.json  # created on first run
@@ -316,5 +323,4 @@ python main.py demo   # Run demo questions in terminal
 │   ├── client.html
 │   ├── pyproject.toml
 │   └── README.md
-└── README.md  # this file
 ```

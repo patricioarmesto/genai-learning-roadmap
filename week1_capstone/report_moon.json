@@ -1,0 +1,20 @@
+{
+  "question": "How many light-seconds away is the Moon?",
+  "answer": "The Moon is approximately 1.28 light-seconds away from Earth (based on average distance of 384,400 km divided by the speed of light",
+  "confidence": "low",
+  "sources": [
+    {
+      "tool": "search",
+      "query": "average distance from Earth to",
+      "result": "The average Earth–Moon distance is 384,400 kilometres."
+    },
+    {
+      "tool": "search",
+      "query": "speed of light in km per second",
+      "result": "The speed of light is 299,792,458 metres per second (≈ 300,000 km/s)."
+    }
+  ],
+  "steps_taken": 3,
+  "reasoning": "The agent ran 3 steps. Final answer was extracted from the research session.",
+  "generated_at": "2026-03-19T02:03:29.087016+00:00"
+}

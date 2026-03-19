@@ -33,7 +33,7 @@ import requests
 # ── Config ────────────────────────────────────────────────────────────────────
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL = "llama3.1:8b"  # "llama3.2"
+MODEL = "qwen3.5:397b-cloud"
 TEMPERATURE = 0.2
 MAX_TOKENS = 512  # Per iteration — thoughts + action only, not full answer
 MAX_STEPS = 10  # Hard limit on Thought/Action/Observation cycles

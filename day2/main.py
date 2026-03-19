@@ -28,7 +28,7 @@ from pydantic import BaseModel, Field, ValidationError, field_validator
 # ── Config ────────────────────────────────────────────────────────────────────
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL = "minimax-m2:cloud"  # "llama3.2"
+MODEL = "qwen3.5:397b-cloud"
 TEMPERATURE = 0.1  # Low temperature = more deterministic JSON output
 MAX_TOKENS = 600
 MAX_RETRIES = 3  # How many times to retry on parse/validation failure
@@ -353,9 +353,9 @@ SAMPLE_INVOICES = [
 
 
 def print_invoice(invoice: Invoice, name: str) -> None:
-    print(f"\n{'═'*55}")
+    print(f"\n{'═' * 55}")
     print(f"  {name}")
-    print(f"{'─'*55}")
+    print(f"{'─' * 55}")
     print(f"  Vendor         : {invoice.vendor}")
     print(f"  Amount due     : {invoice.amount_due} {invoice.currency}")
     print(f"  Due date       : {invoice.due_date or 'not specified'}")
@@ -369,7 +369,7 @@ def print_invoice(invoice: Invoice, name: str) -> None:
             )
     if invoice.notes:
         print(f"  Notes          : {invoice.notes}")
-    print(f"{'═'*55}")
+    print(f"{'═' * 55}")
 
 
 # ── Experiments ───────────────────────────────────────────────────────────────

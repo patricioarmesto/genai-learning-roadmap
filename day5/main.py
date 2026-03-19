@@ -38,7 +38,7 @@ import requests
 # ── Config ────────────────────────────────────────────────────────────────────
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL = "llama3.1:8b"
+MODEL = "qwen3.5:397b-cloud"
 MAX_STEPS = 8
 MAX_TOKENS = 400
 

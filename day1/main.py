@@ -27,7 +27,7 @@ import requests
 # ── Config ────────────────────────────────────────────────────────────────────
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL = "llama3.2"
+MODEL = "qwen3.5:397b-cloud"
 HISTORY_FILE = Path("chat_history.json")
 
 # Temperature experiments — try each and notice how responses change:
@@ -162,12 +162,12 @@ def history_token_estimate(history: list[dict]) -> int:
 def main() -> None:
     history = load_history()
 
-    print(f"\n{'─'*50}")
+    print(f"\n{'─' * 50}")
     print(f"  Day 1 Chatbot  |  model: {MODEL}  |  temp: {TEMPERATURE}")
     if history:
-        print(f"  Loaded {len(history)//2} previous turn(s) from {HISTORY_FILE}")
+        print(f"  Loaded {len(history) // 2} previous turn(s) from {HISTORY_FILE}")
     print(f"  Commands: 'quit' to exit, 'clear' to reset history, 'stats' for info")
-    print(f"{'─'*50}\n")
+    print(f"{'─' * 50}\n")
 
     while True:
         # ── Get user input ────────────────────────────────────────────────────
@@ -193,7 +193,7 @@ def main() -> None:
 
         if user_input.lower() == "stats":
             tok = history_token_estimate(history)
-            print(f"\n  Turns in memory : {len(history)//2}")
+            print(f"\n  Turns in memory : {len(history) // 2}")
             print(f"  Est. context    : ~{tok:,} tokens")
             print(f"  History file    : {HISTORY_FILE.absolute()}")
             print(f"  Temperature     : {TEMPERATURE}")

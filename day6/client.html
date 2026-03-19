@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Streaming agent</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: monospace;
+        font-size: 13px;
+        background: #0e0e0e;
+        color: #ccc;
+        padding: 24px;
+      }
+      #question {
+        font-size: 15px;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 18px;
+      }
+      .line {
+        margin: 3px 0;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .thought {
+        color: #666;
+      }
+      .tool-call {
+        color: #4ec994;
+        margin-top: 10px;
+      }
+      .tool-result {
+        color: #9d7ee8;
+        margin-left: 16px;
+      }
+      .answer {
+        color: #fff;
+        font-weight: bold;
+        margin-top: 14px;
+        border-top: 1px solid #333;
+        padding-top: 10px;
+      }
+      .done {
+        color: #444;
+        font-size: 11px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="question"></div>
+    <div id="out"></div>
+
+    <script>
+      const Q = "How old was Alan Turing when he died?";
+      const url = `http://localhost:8000/stream?q=${encodeURIComponent(Q)}`;
+
+      document.getElementById("question").textContent = Q;
+
+      const out = document.getElementById("out");
+
+      // Each "section" is one <div> that tokens accumulate into.
+      // We only create a new div when the *type* of content changes.
+      let currentDiv = null;
+      let currentType = null;
+
+      function getOrCreateLine(type) {
+        // Reuse the existing div if we're still in the same section type.
+        // Create a new one only when the type changes.
+        if (type !== currentType) {
+          currentDiv = document.createElement("div");
+          currentDiv.className = `line ${type}`;
+          out.appendChild(currentDiv);
+          currentType = type;
+        }
+        return currentDiv;
+      }
+
+      function appendToken(type, text) {
+        getOrCreateLine(type).textContent += text;
+      }
+
+      function newLine(type, text = "") {
+        // Force a new div regardless of current type.
+        currentType = null;
+        getOrCreateLine(type).textContent = text;
+      }
+
+      const es = new EventSource(url);
+
+      es.addEventListener("thought", (e) => {
+        const { token } = JSON.parse(e.data);
+        appendToken("thought", token); // accumulates into one div
+      });
+
+      es.addEventListener("tool_call", (e) => {
+        const { tool, input } = JSON.parse(e.data);
+        newLine("tool-call", `▶ ${tool}(${input})`);
+      });
+
+      es.addEventListener("tool_result", (e) => {
+        const { result } = JSON.parse(e.data);
+        newLine("tool-result", `← ${result}`);
+      });
+
+      es.addEventListener("token", (e) => {
+        const { token } = JSON.parse(e.data);
+        appendToken("answer", token); // accumulates into one div
+      });
+
+      es.addEventListener("done", (e) => {
+        const { steps } = JSON.parse(e.data);
+        newLine("done", `✓ done in ${steps} step${steps !== 1 ? "s" : ""}`);
+        es.close();
+      });
+
+      es.addEventListener("error", (e) => {
+        newLine("done", `✗ ${JSON.parse(e.data).message}`);
+        es.close();
+      });
+    </script>
+  </body>
+</html>

@@ -13,6 +13,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 | 4 | ReAct agent | Reasoning + Acting with scratchpad for multi-step problems |
 | 5 | Streaming ReAct | Real-time token streaming with visual state display |
 | 6 | SSE streaming agent | FastAPI endpoint with Server-Sent Events for web clients |
+| 8 | Semantic search | Semantic search engine demonstrating exact-match vs semantic search |
 
 ## Concepts covered
 
@@ -24,6 +25,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 | 4 | ReAct prompting | Thought/Action/Action Input loop, reasoning scratchpad |
 | 5 | Streaming UX | Token-by-token display, visual state machine, live rendering |
 | 6 | SSE streaming | Server-Sent Events, FastAPI, real-time web integration |
+| 8 | Text embeddings | Cosine similarity, vector search, minimal RAG |
 
 ## Global setup
 
@@ -34,9 +36,10 @@ All days use [Ollama](https://ollama.com/) as the LLM backend.
 brew install ollama
 
 # Pull models
-ollama pull llama3.2          # Day 1, 3, 4, 5
+ollama pull llama3.2          # Day 1, 3, 4, 5, 8
 ollama pull minimax-m2:cloud  # Day 2 (better JSON output)
 ollama pull qwen2.5:14b       # Day 4, 5, 6 (for reasoning/reasoning models)
+ollama pull nomic-embed-text  # Day 8 (for generating vectors)
 
 # Start server (keep running)
 ollama serve
@@ -287,6 +290,33 @@ python main.py demo   # Run demo questions in terminal
 
 ---
 
+## Day 8 — Text Embeddings and Semantic Search
+
+A semantic search engine built over a small corpus of documents to demonstrate the fundamental differences between exact-match and semantic search.
+
+### What it demonstrates
+- **Embeddings** — converting text to vector representations
+- **Cosine similarity** — computing distance between vectors
+- **Semantic vs exact match** — comparing search techniques side-by-side
+- **Minimal RAG** — retrieving context to answer queries
+
+### Usage
+
+```bash
+cd day8
+uv sync
+python main.py
+```
+
+Other modes:
+```bash
+python main.py compare
+python main.py similar "your query"
+python main.py rag "your query"
+```
+
+---
+
 ## File layout
 
 ```
@@ -321,6 +351,11 @@ python main.py demo   # Run demo questions in terminal
 ├── day6/
 │   ├── main.py
 │   ├── client.html
+│   ├── pyproject.toml
+│   └── README.md
+├── day8/
+│   ├── main.py
+│   ├── embeddings_cache.json
 │   ├── pyproject.toml
 │   └── README.md
 ```

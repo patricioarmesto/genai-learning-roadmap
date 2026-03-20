@@ -17,7 +17,7 @@ Architecture:
   - Every iteration: append observation, call model, parse response
 
 Requirements:
-    pip install requests
+    uv add requests
     ollama pull llama3.2
     ollama serve
 """

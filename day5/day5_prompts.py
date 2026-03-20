@@ -21,7 +21,7 @@ Run modes:
   python day5_prompts.py diff         # print all 3 prompts side by side
 
 Requirements:
-    pip install requests
+    uv add requests
     ollama pull llama3.2
     ollama serve
 """

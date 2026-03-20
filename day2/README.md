@@ -31,13 +31,13 @@ ollama serve
 Run the default demo (processes three sample invoices):
 
 ```bash
-python main.py
+python day2_invoice.py
 ```
 
 Run the **breakage experiment** (deliberately triggers bad JSON to show the retry/cleaning pipeline):
 
 ```bash
-python main.py breakage
+python day2_invoice.py breakage
 ```
 
 ## Output schema
@@ -52,4 +52,4 @@ All validated and typed via Pydantic (e.g. positive amounts, 3-letter currency c
 
 ## Project layout
 
-- `main.py` — system prompt, cleaning, LLM call, Pydantic models, sample invoices, and CLI entrypoint.
+- `day2_invoice.py` — system prompt, cleaning, LLM call, Pydantic models, sample invoices, and CLI entrypoint.

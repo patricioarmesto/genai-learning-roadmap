@@ -17,7 +17,7 @@ Part of the **Agentic AI Roadmap** — this day focuses on core LLM API concepts
 
 - Python 3.12+
 - [Ollama](https://ollama.com/) installed and running
-- Model: `llama3.2` (or change `MODEL` in `main.py`)
+- Model: `llama3.2` (or change `MODEL` in `day1_chatbot.py`)
 
 ## Setup
 
@@ -47,7 +47,7 @@ Part of the **Agentic AI Roadmap** — this day focuses on core LLM API concepts
 **Interactive chat:**
 
 ```bash
-python main.py
+python day1_chatbot.py
 ```
 
 - Type your message and press Enter.
@@ -59,14 +59,14 @@ python main.py
 **Temperature experiment** (non-interactive):
 
 ```bash
-python main.py experiment
+python day1_chatbot.py experiment
 ```
 
 Runs the same prompt at temperatures 0.0, 0.5, 1.0, and 1.5 so you can compare output style.
 
 ## Configuration
 
-Edit the constants at the top of `main.py`:
+Edit the constants at the top of `day1_chatbot.py`:
 
 | Constant          | Default | Purpose                                      |
 |-------------------|---------|----------------------------------------------|
@@ -94,7 +94,7 @@ History is stored in `chat_history.json` as a list of `{"role": "user"|"assistan
 
 ```
 day1/
-├── main.py           # Chatbot + experiment entrypoint
+├── day1_chatbot.py           # Chatbot + experiment entrypoint
 ├── chat_history.json # Persisted conversation (created on first run)
 ├── pyproject.toml    # Project and dependencies (uv/pip)
 └── README.md         # This file

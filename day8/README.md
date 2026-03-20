@@ -39,7 +39,7 @@ This project uses [`uv`](https://docs.astral.sh/uv/) for dependency management (
 
 ```bash
 # uv will automatically handle dependencies
-uv run main.py
+uv run day8_embeddings.py
 ```
 
 ### Using `pip`
@@ -49,19 +49,19 @@ uv run main.py
 pip install requests
 
 # Run the script
-python main.py
+python day8_embeddings.py
 ```
 
 ## Usage
 
-The script `main.py` provides several execution modes to experiment with embeddings and search techniques. Note: if using `uv`, replace `python` with `uv run` in the commands below.
+The script `day8_embeddings.py` provides several execution modes to experiment with embeddings and search techniques. Note: if using `uv`, replace `python` with `uv run` in the commands below.
 
 ### Interactive Search REPL
 
 Launch into an interactive search, where you can type queries and see semantic results.
 
 ```bash
-python main.py
+python day8_embeddings.py
 ```
 
 Once inside the REPL, you can use special commands:
@@ -80,19 +80,19 @@ You can also run specific experiments directly from the terminal:
 Run predefined comparison queries that showcase when semantic search shines vs. when keyword search wins.
 
 ```bash
-python main.py compare
+python day8_embeddings.py compare
 ```
 
 **2. Find Similar Documents**
 Find documents most similar to any arbitrary text string.
 
 ```bash
-python main.py similar "how do I store user authentication tokens"
+python day8_embeddings.py similar "how do I store user authentication tokens"
 ```
 
 **3. Minimal RAG Demo**
 Retrieve relevant documents and generate an AI answer based *only* on the retrieved context.
 
 ```bash
-python main.py rag "what is the difference between cache-aside and write-through?"
+python day8_embeddings.py rag "what is the difference between cache-aside and write-through?"
 ```

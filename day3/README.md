@@ -28,7 +28,7 @@ ollama serve
 **Interactive REPL:**
 
 ```bash
-python main.py
+python day3_tools.py
 ```
 
 Ask questions like:
@@ -41,20 +41,20 @@ Commands: `quit` to exit
 **Run preset demo questions:**
 
 ```bash
-python main.py demo
+python day3_tools.py demo
 ```
 
 **Parallel tool call experiment:**
 
 ```bash
-python main.py parallel
+python day3_tools.py parallel
 ```
 Tests whether the model can call multiple tools in one response.
 
 **Schema quality experiment:**
 
 ```bash
-python main.py schema
+python day3_tools.py schema
 ```
 Compares good vs bad tool descriptions to show why wording matters.
 
@@ -72,4 +72,4 @@ The `calculate` tool description includes: *"Do NOT calculate in your head — a
 
 ## Project layout
 
-- `main.py` — Tool implementations, schemas, agent loop, REPL, and experiments
+- `day3_tools.py` — Tool implementations, schemas, agent loop, REPL, and experiments

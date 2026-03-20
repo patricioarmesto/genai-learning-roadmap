@@ -63,14 +63,14 @@ A chat interface with persistent conversation history.
 ```bash
 cd day1
 uv sync
-python main.py
+python day1_chatbot.py
 ```
 
 Commands: `quit` | `clear` | `stats`
 
 Temperature experiment:
 ```bash
-python main.py experiment
+python day1_chatbot.py experiment
 ```
 
 ### Temperature guide
@@ -109,12 +109,12 @@ Plus: **Retry-on-error** — on parse/validation failure, feed the error back to
 ```bash
 cd day2
 uv add requests pydantic
-python main.py
+python day2_invoice.py
 ```
 
 Breakage experiment (shows retry/cleaning pipeline):
 ```bash
-python main.py breakage
+python day2_invoice.py breakage
 ```
 
 ### Output schema
@@ -150,7 +150,7 @@ An agent that calls tools in real time to answer questions.
 ```bash
 cd day3
 uv sync
-python main.py
+python day3_tools.py
 ```
 
 Example questions:
@@ -160,9 +160,9 @@ Example questions:
 
 Other modes:
 ```bash
-python main.py demo     # preset demo questions
-python main.py parallel # test parallel tool calls
-python main.py schema   # compare good vs bad tool descriptions
+python day3_tools.py demo     # preset demo questions
+python day3_tools.py parallel # test parallel tool calls
+python day3_tools.py schema   # compare good vs bad tool descriptions
 ```
 
 ### Available tools
@@ -210,8 +210,8 @@ The loop terminates when the model outputs `finish` action with the final answer
 ```bash
 cd day4
 uv sync
-python main.py        # Start interactive REPL
-python main.py demo   # Run demo questions
+python day4_react.py        # Start interactive REPL
+python day4_react.py demo   # Run demo questions
 ```
 
 ---
@@ -241,9 +241,9 @@ Builds on Day 4 with real-time token streaming and visual display states.
 ```bash
 cd day5
 uv sync
-python main.py        # Interactive REPL
-python main.py demo   # Run demo questions
-python main.py chat   # Chat mode with history
+python day5_prompts.py        # Interactive REPL
+python day5_prompts.py demo   # Run demo questions
+python day5_prompts.py chat   # Chat mode with history
 ```
 
 ---
@@ -274,7 +274,7 @@ FastAPI server with Server-Sent Events for real-time web streaming.
 ```bash
 cd day6
 uv sync
-python main.py server  # Start FastAPI server on port 8000
+python day6_streaming.py server  # Start FastAPI server on port 8000
 ```
 
 Then open `client.html` in a browser or test with curl:
@@ -284,8 +284,8 @@ curl -N "http://localhost:8000/stream?q=How+old+was+Turing+when+he+died"
 
 Other modes:
 ```bash
-python main.py        # Interactive REPL
-python main.py demo   # Run demo questions in terminal
+python day6_streaming.py        # Interactive REPL
+python day6_streaming.py demo   # Run demo questions in terminal
 ```
 
 ---
@@ -305,14 +305,14 @@ A semantic search engine built over a small corpus of documents to demonstrate t
 ```bash
 cd day8
 uv sync
-python main.py
+python day8_embeddings.py
 ```
 
 Other modes:
 ```bash
-python main.py compare
-python main.py similar "your query"
-python main.py rag "your query"
+python day8_embeddings.py compare
+python day8_embeddings.py similar "your query"
+python day8_embeddings.py rag "your query"
 ```
 
 ---
@@ -323,38 +323,38 @@ python main.py rag "your query"
 .
 ├── README.md  # this file
 ├── week1_capstone/
-│   ├── main.py
+│   ├── day8_embeddings.py
 │   ├── report_*.json  # sample output reports
 │   ├── pyproject.toml
 │   └── README.md
 ├── day1/
-│   ├── main.py
+│   ├── day1_chatbot.py
 │   ├── chat_history.json  # created on first run
 │   ├── pyproject.toml
 │   └── README.md
 ├── day2/
-│   ├── main.py
+│   ├── day2_invoice.py
 │   ├── pyproject.toml
 │   └── README.md
 ├── day3/
-│   ├── main.py
+│   ├── day3_tools.py
 │   ├── pyproject.toml
 │   └── README.md
 ├── day4/
-│   ├── main.py
+│   ├── day4_react.py
 │   ├── pyproject.toml
 │   └── README.md
 ├── day5/
-│   ├── main.py
+│   ├── day5_prompts.py
 │   ├── pyproject.toml
 │   └── README.md
 ├── day6/
-│   ├── main.py
+│   ├── day6_streaming.py
 │   ├── client.html
 │   ├── pyproject.toml
 │   └── README.md
 ├── day8/
-│   ├── main.py
+│   ├── day8_embeddings.py
 │   ├── embeddings_cache.json
 │   ├── pyproject.toml
 │   └── README.md

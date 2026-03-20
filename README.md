@@ -323,7 +323,7 @@ python day8_embeddings.py rag "your query"
 .
 ├── README.md  # this file
 ├── week1_capstone/
-│   ├── day8_embeddings.py
+│   ├── week1_capstone.py
 │   ├── report_*.json  # sample output reports
 │   ├── pyproject.toml
 │   └── README.md

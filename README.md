@@ -14,6 +14,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 | 5 | Streaming ReAct | Real-time token streaming with visual state display |
 | 6 | SSE streaming agent | FastAPI endpoint with Server-Sent Events for web clients |
 | 8 | Semantic search | Semantic search engine demonstrating exact-match vs semantic search |
+| 9 | Vector DB filtering | Qdrant vector database with metadata filtering and HNSW indexing |
 
 ## Concepts covered
 
@@ -26,6 +27,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 | 5 | Streaming UX | Token-by-token display, visual state machine, live rendering |
 | 6 | SSE streaming | Server-Sent Events, FastAPI, real-time web integration |
 | 8 | Text embeddings | Cosine similarity, vector search, minimal RAG |
+| 9 | Vector databases | Qdrant, HNSW indexing, metadata filtering, hybrid search |
 
 ## Global setup
 
@@ -39,10 +41,13 @@ brew install ollama
 ollama pull llama3.2          # Day 1, 3, 4, 5, 8
 ollama pull minimax-m2:cloud  # Day 2 (better JSON output)
 ollama pull qwen2.5:14b       # Day 4, 5, 6 (for reasoning/reasoning models)
-ollama pull nomic-embed-text  # Day 8 (for generating vectors)
+ollama pull nomic-embed-text  # Day 8, 9 (for generating vectors)
 
 # Start server (keep running)
 ollama serve
+
+# Start Qdrant (Day 9) - runs on port 6333
+docker run -p 6333:6333 qdrant/qdrant
 ```
 
 ---
@@ -317,6 +322,29 @@ python day8_embeddings.py rag "your query"
 
 ---
 
+## Day 9 — Vector Database Filtering
+
+A Qdrant-powered vector database demonstrating metadata filtering, HNSW indexing, and hybrid search.
+
+### What it demonstrates
+- **Qdrant setup** — in-memory vector database with cosine similarity
+- **HNSW indexing** — approximate nearest neighbor search for speed
+- **Metadata filtering** — filter by category, tags, year without affecting vector search
+- **Hybrid search** — combining semantic similarity with structured filters
+
+### Usage
+
+```bash
+cd day9
+uv sync
+python main.py ingest   # Ingest documents into Qdrant
+python main.py filter   # Run filter demo
+python main.py search   # Run semantic search demo
+python main.py benchmark # Compare brute-force vs HNSW performance
+```
+
+---
+
 ## File layout
 
 ```
@@ -356,6 +384,10 @@ python day8_embeddings.py rag "your query"
 ├── day8/
 │   ├── day8_embeddings.py
 │   ├── embeddings_cache.json
+│   ├── pyproject.toml
+│   └── README.md
+├── day9/
+│   ├── main.py
 │   ├── pyproject.toml
 │   └── README.md
 ```

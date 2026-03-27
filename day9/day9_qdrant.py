@@ -15,7 +15,7 @@ Key concepts demonstrated:
 
 Setup:
   docker run -d -p 6333:6333 -v qdrant_storage:/qdrant/storage qdrant/qdrant
-  pip install qdrant-client requests
+  uv add qdrant-client requests
   ollama pull nomic-embed-text
   ollama serve
 

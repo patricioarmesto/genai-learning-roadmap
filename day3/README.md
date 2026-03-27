@@ -28,7 +28,7 @@ ollama serve
 **Interactive REPL:**
 
 ```bash
-python day3_tools.py
+uv run python day3_tools.py
 ```
 
 Ask questions like:
@@ -41,20 +41,20 @@ Commands: `quit` to exit
 **Run preset demo questions:**
 
 ```bash
-python day3_tools.py demo
+uv run python day3_tools.py demo
 ```
 
 **Parallel tool call experiment:**
 
 ```bash
-python day3_tools.py parallel
+uv run python day3_tools.py parallel
 ```
 Tests whether the model can call multiple tools in one response.
 
 **Schema quality experiment:**
 
 ```bash
-python day3_tools.py schema
+uv run python day3_tools.py schema
 ```
 Compares good vs bad tool descriptions to show why wording matters.
 

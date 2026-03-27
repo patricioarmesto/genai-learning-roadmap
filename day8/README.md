@@ -49,7 +49,7 @@ uv run day8_embeddings.py
 pip install requests
 
 # Run the script
-python day8_embeddings.py
+uv run python day8_embeddings.py
 ```
 
 ## Usage
@@ -61,7 +61,7 @@ The script `day8_embeddings.py` provides several execution modes to experiment w
 Launch into an interactive search, where you can type queries and see semantic results.
 
 ```bash
-python day8_embeddings.py
+uv run python day8_embeddings.py
 ```
 
 Once inside the REPL, you can use special commands:
@@ -80,19 +80,19 @@ You can also run specific experiments directly from the terminal:
 Run predefined comparison queries that showcase when semantic search shines vs. when keyword search wins.
 
 ```bash
-python day8_embeddings.py compare
+uv run python day8_embeddings.py compare
 ```
 
 **2. Find Similar Documents**
 Find documents most similar to any arbitrary text string.
 
 ```bash
-python day8_embeddings.py similar "how do I store user authentication tokens"
+uv run python day8_embeddings.py similar "how do I store user authentication tokens"
 ```
 
 **3. Minimal RAG Demo**
 Retrieve relevant documents and generate an AI answer based *only* on the retrieved context.
 
 ```bash
-python day8_embeddings.py rag "what is the difference between cache-aside and write-through?"
+uv run python day8_embeddings.py rag "what is the difference between cache-aside and write-through?"
 ```

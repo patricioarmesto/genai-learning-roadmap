@@ -47,7 +47,7 @@ Part of the **Agentic AI Roadmap** — this day focuses on core LLM API concepts
 **Interactive chat:**
 
 ```bash
-python day1_chatbot.py
+uv run python day1_chatbot.py
 ```
 
 - Type your message and press Enter.
@@ -59,7 +59,7 @@ python day1_chatbot.py
 **Temperature experiment** (non-interactive):
 
 ```bash
-python day1_chatbot.py experiment
+uv run python day1_chatbot.py experiment
 ```
 
 Runs the same prompt at temperatures 0.0, 0.5, 1.0, and 1.5 so you can compare output style.

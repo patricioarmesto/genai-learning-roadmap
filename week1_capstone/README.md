@@ -22,16 +22,16 @@ A CLI tool that uses a **ReAct** (Reasoning + Acting) agent loop to research que
 
 ```bash
 # Single question
-python main.py "How old was Einstein when he published special relativity?"
+uv run python main.py "How old was Einstein when he published special relativity?"
 
 # With output file
-python main.py "How far is the Moon in light-seconds?" --out report_moon.json
+uv run python main.py "How far is the Moon in light-seconds?" --out report_moon.json
 
 # Non-streaming (faster)
-python main.py "When was Buenos Aires founded?" --no-stream
+uv run python main.py "When was Buenos Aires founded?" --no-stream
 
 # Interactive mode
-python main.py --interactive
+uv run python main.py --interactive
 ```
 
 ## Output

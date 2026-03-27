@@ -50,6 +50,6 @@ sequenceDiagram
 ## Usage
 
 ```bash
-python day4_react.py        # Start interactive REPL
-python day4_react.py demo   # Run demo questions
+uv run python day4_react.py        # Start interactive REPL
+uv run python day4_react.py demo   # Run demo questions
 ```

@@ -15,6 +15,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 | 6 | SSE streaming agent | FastAPI endpoint with Server-Sent Events for web clients |
 | 8 | Semantic search | Semantic search engine demonstrating exact-match vs semantic search |
 | 9 | Vector DB filtering | Qdrant vector database with metadata filtering and HNSW indexing |
+| 10 | Document chunking | Four chunking strategies evaluated: fixed, recursive, semantic, hierarchical |
 
 ## Concepts covered
 
@@ -28,6 +29,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 | 6 | SSE streaming | Server-Sent Events, FastAPI, real-time web integration |
 | 8 | Text embeddings | Cosine similarity, vector search, minimal RAG |
 | 9 | Vector databases | Qdrant, HNSW indexing, metadata filtering, hybrid search |
+| 10 | Document chunking | Fixed-size, recursive, semantic, hierarchical chunking for RAG |
 
 ## Global setup
 
@@ -68,14 +70,14 @@ A chat interface with persistent conversation history.
 ```bash
 cd day1
 uv sync
-python day1_chatbot.py
+uv run python day1_chatbot.py
 ```
 
 Commands: `quit` | `clear` | `stats`
 
 Temperature experiment:
 ```bash
-python day1_chatbot.py experiment
+uv run python day1_chatbot.py experiment
 ```
 
 ### Temperature guide
@@ -114,12 +116,12 @@ Plus: **Retry-on-error** — on parse/validation failure, feed the error back to
 ```bash
 cd day2
 uv add requests pydantic
-python day2_invoice.py
+uv run python day2_invoice.py
 ```
 
 Breakage experiment (shows retry/cleaning pipeline):
 ```bash
-python day2_invoice.py breakage
+uv run python day2_invoice.py breakage
 ```
 
 ### Output schema
@@ -155,7 +157,7 @@ An agent that calls tools in real time to answer questions.
 ```bash
 cd day3
 uv sync
-python day3_tools.py
+uv run python day3_tools.py
 ```
 
 Example questions:
@@ -165,9 +167,9 @@ Example questions:
 
 Other modes:
 ```bash
-python day3_tools.py demo     # preset demo questions
-python day3_tools.py parallel # test parallel tool calls
-python day3_tools.py schema   # compare good vs bad tool descriptions
+uv run python day3_tools.py demo     # preset demo questions
+uv run python day3_tools.py parallel # test parallel tool calls
+uv run python day3_tools.py schema   # compare good vs bad tool descriptions
 ```
 
 ### Available tools
@@ -215,8 +217,8 @@ The loop terminates when the model outputs `finish` action with the final answer
 ```bash
 cd day4
 uv sync
-python day4_react.py        # Start interactive REPL
-python day4_react.py demo   # Run demo questions
+uv run python day4_react.py        # Start interactive REPL
+uv run python day4_react.py demo   # Run demo questions
 ```
 
 ---
@@ -246,9 +248,9 @@ Builds on Day 4 with real-time token streaming and visual display states.
 ```bash
 cd day5
 uv sync
-python day5_prompts.py        # Interactive REPL
-python day5_prompts.py demo   # Run demo questions
-python day5_prompts.py chat   # Chat mode with history
+uv run python day5_prompts.py        # Interactive REPL
+uv run python day5_prompts.py demo   # Run demo questions
+uv run python day5_prompts.py chat   # Chat mode with history
 ```
 
 ---
@@ -279,7 +281,7 @@ FastAPI server with Server-Sent Events for real-time web streaming.
 ```bash
 cd day6
 uv sync
-python day6_streaming.py server  # Start FastAPI server on port 8000
+uv run python day6_streaming.py server  # Start FastAPI server on port 8000
 ```
 
 Then open `client.html` in a browser or test with curl:
@@ -289,8 +291,8 @@ curl -N "http://localhost:8000/stream?q=How+old+was+Turing+when+he+died"
 
 Other modes:
 ```bash
-python day6_streaming.py        # Interactive REPL
-python day6_streaming.py demo   # Run demo questions in terminal
+uv run python day6_streaming.py        # Interactive REPL
+uv run python day6_streaming.py demo   # Run demo questions in terminal
 ```
 
 ---
@@ -310,14 +312,14 @@ A semantic search engine built over a small corpus of documents to demonstrate t
 ```bash
 cd day8
 uv sync
-python day8_embeddings.py
+uv run python day8_embeddings.py
 ```
 
 Other modes:
 ```bash
-python day8_embeddings.py compare
-python day8_embeddings.py similar "your query"
-python day8_embeddings.py rag "your query"
+uv run python day8_embeddings.py compare
+uv run python day8_embeddings.py similar "your query"
+uv run python day8_embeddings.py rag "your query"
 ```
 
 ---
@@ -337,10 +339,34 @@ A Qdrant-powered vector database demonstrating metadata filtering, HNSW indexing
 ```bash
 cd day9
 uv sync
-python main.py ingest   # Ingest documents into Qdrant
-python main.py filter   # Run filter demo
-python main.py search   # Run semantic search demo
-python main.py benchmark # Compare brute-force vs HNSW performance
+uv run python main.py ingest   # Ingest documents into Qdrant
+uv run python main.py filter   # Run filter demo
+uv run python main.py search   # Run semantic search demo
+uv run python main.py benchmark # Compare brute-force vs HNSW performance
+```
+
+---
+
+## Day 10 — Document Chunking Strategies
+
+Indexes the same document corpus using four chunking strategies, then evaluates which retrieves the most relevant chunk for each test question.
+
+### What it demonstrates
+- **Fixed-size** — split every N chars with M overlap
+- **Recursive** — try paragraph → sentence → word → char separators
+- **Semantic** — embed sentences, split where topic similarity drops
+- **Hierarchical** — small child chunks for retrieval, large parent for context
+- **Evaluation** — Hit@1 and Hit@3 scoring across all strategies
+
+### Usage
+
+```bash
+cd day10
+uv sync
+uv run python main.py          # Full eval (ingest + score)
+uv run python main.py ingest   # Ingest only (re-build all collections)
+uv run python main.py search "query"  # Search all strategies
+uv run python main.py inspect  # Print chunks from each strategy
 ```
 
 ---
@@ -388,6 +414,10 @@ python main.py benchmark # Compare brute-force vs HNSW performance
 │   └── README.md
 ├── day9/
 │   ├── main.py
+│   ├── pyproject.toml
+│   └── README.md
+├── day10/
+│   ├── day10_chunking.py
 │   ├── pyproject.toml
 │   └── README.md
 ```

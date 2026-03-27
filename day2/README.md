@@ -31,13 +31,13 @@ ollama serve
 Run the default demo (processes three sample invoices):
 
 ```bash
-python day2_invoice.py
+uv run python day2_invoice.py
 ```
 
 Run the **breakage experiment** (deliberately triggers bad JSON to show the retry/cleaning pipeline):
 
 ```bash
-python day2_invoice.py breakage
+uv run python day2_invoice.py breakage
 ```
 
 ## Output schema

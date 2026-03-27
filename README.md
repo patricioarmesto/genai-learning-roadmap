@@ -33,7 +33,15 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 
 ## Global setup
 
-All days use [Ollama](https://ollama.com/) as the LLM backend.
+All days use [uv](https://github.com/astral-sh/uv) for Python package management and [Ollama](https://ollama.com/) as the LLM backend.
+
+```bash
+# Install uv (macOS)
+brew install uv
+
+# Or on Linux/WSL:
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
 
 ```bash
 # Install Ollama (macOS)

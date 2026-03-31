@@ -16,6 +16,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 | 8 | Semantic search | Semantic search engine demonstrating exact-match vs semantic search |
 | 9 | Vector DB filtering | Qdrant vector database with metadata filtering and HNSW indexing |
 | 10 | Document chunking | Four chunking strategies evaluated: fixed, recursive, semantic, hierarchical |
+| 11 | RAG pipeline | Complete RAG Q&A with query rewriting, grounded generation, and LLM-as-judge |
 
 ## Concepts covered
 
@@ -30,6 +31,7 @@ A hands-on roadmap for building agentic AI systems. Each folder (`day1/`, `day2/
 | 8 | Text embeddings | Cosine similarity, vector search, minimal RAG |
 | 9 | Vector databases | Qdrant, HNSW indexing, metadata filtering, hybrid search |
 | 10 | Document chunking | Fixed-size, recursive, semantic, hierarchical chunking for RAG |
+| 11 | RAG pipeline | Query rewriting, grounded generation, LLM-as-judge, refusal detection |
 
 ## Global setup
 
@@ -379,6 +381,33 @@ uv run python main.py inspect  # Print chunks from each strategy
 
 ---
 
+## Day 11 — RAG Pipeline
+
+A complete RAG Q&A system combining techniques from Days 8-10.
+
+### What it demonstrates
+- **Query rewriting** — expand the question for better recall
+- **Qdrant retrieval** — semantic search over chunked corpus
+- **Context assembly** — rank, deduplicate, and format chunks
+- **Grounded generation** — force the model to cite context
+- **Groundedness checker** — LLM-as-judge scoring answer quality
+- **Refusal detection** — model says "not in context" when unsure
+
+### Usage
+
+```bash
+cd day11
+uv sync
+uv run python day11_rag.py                    # interactive Q&A
+uv run python day11_rag.py ask "question"    # single question
+uv run python day11_rag.py eval               # run evaluation set
+uv run python day11_rag.py demo               # preset demo questions
+```
+
+Requires: Qdrant running (day10 data must be ingested first)
+
+---
+
 ## File layout
 
 ```
@@ -426,6 +455,10 @@ uv run python main.py inspect  # Print chunks from each strategy
 │   └── README.md
 ├── day10/
 │   ├── day10_chunking.py
+│   ├── pyproject.toml
+│   └── README.md
+├── day11/
+│   ├── day11_rag.py
 │   ├── pyproject.toml
 │   └── README.md
 ```

@@ -580,14 +580,15 @@ def search_strategy(query: str, strategy: str, top_k: int = TOP_K) -> list[dict]
     return [
         {
             "score": round(r.score, 4),
-            "text": r.payload["text"],
+            "text": r.payload.get("text", ""),
             # Return parent_text for hierarchical — that's what the LLM would see
-            "context_text": r.payload["parent_text"],
-            "doc_id": r.payload["doc_id"],
-            "char_count": r.payload["char_count"],
-            "chunk_idx": r.payload["chunk_idx"],
+            "context_text": r.payload.get("parent_text", ""),
+            "doc_id": r.payload.get("doc_id", ""),
+            "char_count": r.payload.get("char_count", 0),
+            "chunk_idx": r.payload.get("chunk_idx", 0),
         }
         for r in results
+        if r.payload is not None
     ]
 
 

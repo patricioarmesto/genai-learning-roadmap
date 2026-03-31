@@ -1,0 +1,11 @@
+[project]
+name = "day11"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.12.5",
+    "qdrant-client>=1.17.1",
+    "requests>=2.33.1",
+]
